@@ -1,19 +1,70 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+        <link rel="stylesheet" href="/public/base.css">
+        <link rel="stylesheet" href="https://bootswatch.com/5/lumen/bootstrap.css">
+    {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+
+    {% endblock %}
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto d-flex justify-content-between mx-auto pt-2">
+                {# TODO AFFICHER LE LOGO #}
+                <li><img src="/images/logo.png" alt="" class="logo"></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('home_page') }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Produits</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Nouveautés</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contacts</a>
+                </li>
+                <li class="nav-item">
+                    <form class="d-flex">
+                        <input class="form-control me-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </li>
+                {# TODO FAIRE LA LISTE DEROULANTE #}
+                {% if app.user %}
+                <li class="nav-item"><a class="nav-link" href="{{ path('signout') }}">Se déconnecter</a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{{ path('register') }}">S'enregistrer</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('signin') }}">Se connecter</a></li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Panier</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+{% block body %}{% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+</body>
 </html>
