@@ -23,7 +23,7 @@ security:
             form_login:
                 login_path: signin
                 check_path: signin
-                default_target_path: home_page
+                default_target_path: profile
                 username_parameter: _email
             logout:
                 path: signout
