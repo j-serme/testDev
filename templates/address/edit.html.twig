@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification de l'adresse{% endblock %}
+
+{% block body %}
+
+    {{ form_start(formAddress) }}
+        {{ form_row(formAddress.number) }}
+        {{ form_row(formAddress.street) }}
+        {{ form_row(formAddress.zipcode) }}
+        {{ form_row(formAddress.city) }}
+        <button type="submit" class="btn btn-success">VALIDER</button>
+    {{ form_end(formAddress) }}
+{% endblock %}

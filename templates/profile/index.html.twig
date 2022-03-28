@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile Informations{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-center my-5">Informations du Profil</h1>
+
+    {% for message in app.flashes('notice') %}
+
+            <div class="alert alert-dismissible alert-success flash-notice">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Profil modifié !</strong> {{ message}}.
+            </div>
+
+    {% endfor %}
+
+    <div class="d-flex row justify-content-around align-items-baseline mt-5">
+
+        <div class="left-block col-4">
+            <p><a href="{{ path('profile_change', {id:app.user.id}) }}" class="btn btn-outline-warning">MODIFIER LES INFORMATIONS</a></p>
+            <p><a href="{{ path('profile_delete', {id:app.user.id}) }}" class="btn btn-outline-danger">SUPPRIMER LE PROFIL</a></p>
+            <p><a href="{{ path('address', {id:app.user.id}) }}" class="btn btn-outline-success">AJOUTER UNE ADRESSE</a></p>
+            <p><a href="{{ path('profile_change_password', {id:app.user.id}) }}" class="btn btn-outline-warning">MODIFIER LE MOT DE PASSE</a></p>
+        </div>
+
+        <div class="right-block col-4">
+            <p><strong>Adresse Mail : </strong> <span class="text-uppercase">{{ app.user.email }}</span></p>
+            <p><strong>Prénom : </strong> <span class="text-uppercase">{{ app.user.firstname }}</span></p>
+            <p><strong>Genre : </strong> <span class="text-uppercase">{{ app.user.genre }}</span></p>
+            <p><strong>Date de Naissance : </strong> <span>{{ app.user.birthdate|date('d-m-Y') }}</span></p>
+            <p><strong>Nom : </strong> <span class="text-uppercase">{{ app.user.lastname }}</span></p>
+
+
+        </div>
+
+    </div>
+
+    <div class="mt-5"><strong class="text-uppercase">Adresses Postales : </strong></div>
+    {% for adress in app.user.adresses %}
+        <hr>
+        <div class="d-flex row justify-content-around align-items-baseline">
+
+                <div class="text-center col-9">
+                    <span class="text-uppercase">{{ adress.number }}</span>,
+                    <span class="text-uppercase">{{ adress.street }}</span>,
+                    <span class="text-uppercase">{{ adress.zipcode }}</span>,
+                    <span class="text-uppercase">{{ adress.city }}</span>
+                </div>
+
+        <div class="d-flex col-3">
+            <a href="{{ path('address_change', {id:adress.id}) }}" class="btn btn-outline-warning ms-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Cliquez pour modifier">MODIFIER</a>
+            <a href="{{ path('address_delete', {id:adress.id}) }}" class="btn btn-outline-danger ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cliquez pour supprimer">SUPPRIMER</a>
+        </div>
+
+        </div>
+    {% endfor %}
+
+
+{% endblock %}

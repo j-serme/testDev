@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AddressController!{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+        {{ form_row(form.number) }}
+        {{ form_row(form.street) }}
+        {{ form_row(form.zipcode) }}
+        {{ form_row(form.city) }}
+        <button type="submit" class="btn btn-success">AJOUTER</button>
+    {{ form_end(form) }}
+{% endblock %}
