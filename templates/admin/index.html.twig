@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'Administration{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-center my-5">Page d'Administration</h1>
+
+    <!-- Sidebar -->
+
+    <!-- Error message -->
+    {% for message in app.flashes('notice') %}
+
+        <div class="alert alert-dismissible alert-success flash-notice">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Profil modifié !</strong> {{ message }}.
+        </div>
+
+    {% endfor %}
+
+
+    <div class="d-flex flex-column my-5" style="max-width: 350px">
+        <a href="{{ path('animal_index') }}" class="btn btn-secondary mt-3">Afficher toutes les catégories</a>
+        <a href="{{ path('animal_create') }}" class="btn btn-secondary mt-3">CREER CATEGORIE</a>
+        <a href="{{ path('users_index') }}" class="btn btn-secondary mt-3">Afficher toutes les sous catégories</a>
+        <a href="{{ path('category_create') }}" class="btn btn-secondary mt-3">CREER SOUS-CATEGORIE</a>
+        <a href="{{ path('users_index') }}" class="btn btn-secondary mt-3">Afficher tous les users</a>
+        <a href="{{ path('register') }}" class="btn btn-secondary mt-3">Créer un utilisateur</a>
+    </div>
+{% endblock %}

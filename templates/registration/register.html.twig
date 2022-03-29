@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire d'enregistrement{% endblock %}
+
+{% block body %}
+
+    <h1>Formulaire d'enregistrement</h1>
+
+
+    {{ form_start(registrationForm) }}
+    {{ form_row(registrationForm.email) }}
+    {{ form_row(registrationForm.genre) }}
+    {{ form_row(registrationForm.lastname) }}
+    {{ form_row(registrationForm.firstname) }}
+    {{ form_row(registrationForm.birthdate) }}
+    {{ form_row(registrationForm.plainPassword, {
+        label: 'Password'
+    }) }}
+
+    {{ form_row(registrationForm.agreeTerms) }}
+
+    <button type="submit" class="btn">Valider</button>
+    {{ form_end(registrationForm) }}
+
+{% endblock %}

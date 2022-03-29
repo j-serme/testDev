@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Tableau des catégories {% endblock %}
+
+{% block body %}
+
+  <h1 class="text-center my-5">Gestion de vos catégories</h1>
+
+<table class="table table-hover table-striped">
+  <thead>
+  <tr class="text-center">
+    <th></th>
+    <th></th>
+    <th scope="col">ID</th>
+    <th scope="col">Catégories</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+
+  {% for animal in animals %}
+  <tr class="table-light text-center">
+
+    <td></td>
+    <td></td>
+    <th scope="row">{{ animal.id }}</th>
+    <td class="text-uppercase">{{ animal.name }}</td>
+    <td><a href="{{ path('animal_change', {id:animal.id}) }}" class="text-uppercase btn btn-outline-dark">Modifier</a>
+    <a href="{{ path('animal_delete', {id:animal.id}) }}" class="text-uppercase btn btn-outline-danger">Supprimer</a></td>
+
+  </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+
+  <a href="{{ path('admin') }}" class="btn btn-outline-dark">RETOUR</a>
+
+{% endblock %}

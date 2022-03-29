@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    <button class="btn btn-outline-dark">Valider</button>
+    {{ form_end(form) }}
+
+{% endblock %}

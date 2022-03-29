@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Tableau des utilisateurs {% endblock %}
+
+{% block body %}
+
+  <h1 class="text-center my-5">Gestion de vos utilisateurs hihi</h1>
+
+<table class="table table-hover table-striped">
+  <thead>
+  <tr class="text-center">
+    <th scope="col">ID</th>
+    <th scope="col">Email</th>
+    <th scope="col">Prénom</th>
+    <th scope="col">Nom de Famille</th>
+    <th scope="col">Date de Naissance</th>
+    <th scope="col">Genre</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  {% for user in users %}
+  <tr class="table-light text-center">
+
+    <th scope="row">{{ user.id }}</th>
+    <td>{{ user.email }}</td>
+    <td>{{ user.firstname }}</td>
+    <td>{{ user.lastname }}</td>
+    <td>{{ user.birthdate|date('d-m-Y') }}</td>
+    <td>{{ user.genre }}</td>
+    <td><a href="{{ path('users_modify', {id:user.id}) }}" class="text-uppercase btn btn-outline-dark">Modifier</a>
+    <a href="{{ path('users_delete', {id:user.id}) }}" class="text-uppercase btn btn-outline-danger">Supprimer</a></td>
+
+  </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+
+  <a href="{{ path('admin') }}" class="btn btn-outline-dark">RETOUR</a>
+
+{% endblock %}
