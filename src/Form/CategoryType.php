@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Animal;
 use App\Entity\Category;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,6 +15,10 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('animal',  EntityType::class, [
+                'class' => Animal::class,
+                'choice_label' => 'name'
+            ])
         ;
     }
 

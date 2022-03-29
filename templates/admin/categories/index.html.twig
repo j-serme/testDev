@@ -10,23 +10,23 @@
   <thead>
   <tr class="text-center">
     <th scope="col">ID</th>
-    <th scope="col">Catégories</th>
+    <th scope="col">Sous-Catégorie</th>
+    <th scope="col">Catégorie</th>
   </tr>
   </thead>
   <tbody>
 
-{#
-  {% for animal in animals %}
+  {% for category in categories %}
   <tr class="table-light text-center">
 
-    <th scope="row">{{ animal.id }}</th>
-    <td>{{ animal.name }}</td>
-    <td><a href="{{ path('users_modify', {id:animal.id}) }}" class="text-uppercase btn btn-outline-dark">Modifier</a>
-    <a href="{{ path('users_delete', {id:animal.id}) }}" class="text-uppercase btn btn-outline-danger">Supprimer</a></td>
+    <th scope="row">{{ category.id }}</th>
+    <td class="text-uppercase">{{ category.name }}</td>
+    <td class="text-uppercase">{{ category.animal.name }}</td>
+    <td><a href="{{ path('category_change', {id:category.id}) }}" class="text-uppercase btn btn-outline-dark">Modifier</a>
+    <a href="{{ path('category_delete', {id:category.id}) }}" class="text-uppercase btn btn-outline-danger">Supprimer</a></td>
 
   </tr>
   {% endfor %}
-#}
 
   </tbody>
 </table>

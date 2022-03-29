@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Tableau des catégories {% endblock %}
+
+{% block body %}
+
+  <h1 class="text-center my-5">Gestion de vos catégories</h1>
+
+  {{ form_start(form) }}
+
+  {{ form_row(form.name) }}
+  {{ form_row(form.animal) }}
+
+  <button type="submit" class="btn btn-outline-success">Modifier</button>
+  {{ form_end(form) }}
+
+  <a href="{{ path('admin') }}" class="btn btn-outline-dark">RETOUR</a>
+
+{% endblock %}

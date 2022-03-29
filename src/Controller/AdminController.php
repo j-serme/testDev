@@ -146,8 +146,6 @@ class AdminController extends AbstractController
 
 
 
-
-
     /**
      * @Route("/category/create", name="category_create")
      * @param Request $request
@@ -172,6 +170,53 @@ class AdminController extends AbstractController
 
 
         return $this->renderForm('admin/categories/createCategory.html.twig', ['form'=>$form]);
+    }
+
+    /**
+     * @Route("/category/change/{id}",name="category_change")
+     * @param EntityManagerInterface $manager
+     * @param Request $request
+     * @param Category $category
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function changeCategory(EntityManagerInterface $manager, Request $request, Category $category)
+    {
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $category = $form->getData();
+            $manager->persist($category);
+            $manager->flush();
+
+            $this->addFlash('notice', 'La catégorie a bien été créée');
+            return $this->redirectToRoute('category_index');
+        }
+
+
+        return $this->renderForm('admin/categories/edit.html.twig', ['form'=>$form]);
+    }
+
+    /**
+     * @Route("/category/delete/{id}",name="category_delete")
+     * @param Category $category
+     * @param EntityManagerInterface $manager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function deleteCategory(Category $category, EntityManagerInterface $manager)
+    {
+        if (!$category)
+        {
+            $this->addFlash('notice', 'Cette catégorie n\'existe pas');
+            return $this->redirectToRoute('category_index');
+        }
+
+        $manager->remove($category);
+        $manager->flush();
+
+
+        return $this->redirectToRoute('category_index');
     }
 
 
